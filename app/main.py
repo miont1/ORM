@@ -1,6 +1,11 @@
 from .database import SessionLocal, init_db
 from .crud import (
+    add_book_to_order,
+    create_author,
+    create_book,
+    create_order,
     create_user,
+    get_all_orders,
     get_all_users,
     get_all_users_by_name,
     get_user_by_email,
@@ -16,8 +21,8 @@ def main():
     db = SessionLocal()
 
     # Додаємо користувачів
-    create_user(db, name="John Doe2", email="john2@example.com")
-    create_user(db, name="Jane Doe2", email="jane2@example.com")
+    create_user(db, name="John Doe", email="john2@example.com")
+    create_user(db, name="Jane Doe", email="jane2@example.com")
 
     # Виводимо всіх користувачів
     users = get_all_users(db)
@@ -38,6 +43,15 @@ def main():
     print("Users by pattern")
     for user in users_by_pattern:
         print(user.email)
+
+    create_author(db, name="Author2")
+    create_author(db, name="Author3")
+    create_book(db, title="Book2", author_ids=[2, 3])
+    create_order(db, user_id=1)
+    add_book_to_order(db, order_id=1, book_id=1, quantity=2)
+
+    orders = get_all_orders(db)
+    print(orders)
 
 
 if __name__ == "__main__":
