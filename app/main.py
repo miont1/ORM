@@ -16,8 +16,8 @@ def main():
     db = SessionLocal()
 
     # Додаємо користувачів
-    create_user(db, name="John Doe2", email="john2@example.com")
-    create_user(db, name="Jane Doe2", email="jane2@example.com")
+    # create_user(db, name="John Doe2", email="john2@example.com")
+    # create_user(db, name="Jane Doe2", email="jane2@example.com")
 
     # Виводимо всіх користувачів
     users = get_all_users(db)
