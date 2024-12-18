@@ -70,8 +70,19 @@ def add_book_to_order(db: Session, order_id: int, book_id: int, quantity: int):
     if quantity <= 0:
         raise ValueError("Кількість має бути більше нуля.")
 
-    order_item = OrderItem(order_id=order_id, book_id=book_id, quantity=quantity)
-    db.add(order_item)
+    # Перевірка, чи вже існує запис у OrderItem
+    order_item = (
+        db.query(OrderItem)
+        .filter(OrderItem.order_id == order_id, OrderItem.book_id == book_id)
+        .first()
+    )
+
+    if order_item:
+        order_item.quantity += quantity
+    else:
+        order_item = OrderItem(order_id=order_id, book_id=book_id, quantity=quantity)
+        db.add(order_item)
+
     db.commit()
 
 

@@ -21,8 +21,8 @@ def main():
     db = SessionLocal()
 
     # Додаємо користувачів
-    create_user(db, name="John Doe2", email="john2@example.com")
-    create_user(db, name="Jane Doe2", email="jane2@example.com")
+    create_user(db, name="John Doe", email="john4@example.com")
+    create_user(db, name="Jane Doe", email="jane4@example.com")
 
     # Виводимо всіх користувачів
     users = get_all_users(db)
@@ -48,7 +48,7 @@ def main():
     create_author(db, name="Author3")
     create_book(db, title="Book2", author_ids=[2, 3])
     create_order(db, user_id=1)
-    add_book_to_order(db, order_id=1, book_id=1, quantity=2)
+    add_book_to_order(db, order_id=2, book_id=2, quantity=999)
 
     orders = get_all_orders(db)
     print(orders)

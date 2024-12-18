@@ -5,6 +5,9 @@ from sqlalchemy.orm import sessionmaker
 from app.models import Base
 
 TEST_DATABASE_URL = os.environ.get("TEST_DATABASE_URL_ORM")
+if not TEST_DATABASE_URL:
+    raise ValueError("TEST_DATABASE_URL_ORM environment variable is not set")
+
 
 engine = create_engine(TEST_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
